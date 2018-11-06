@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Secrets</title>
+    <link rel="stylesheet" href="/assets/notes.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/assets/manifest.json">
+    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#000000">
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Secretly">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="application-name" content="Secretly">
+    <meta name="msapplication-config" content="/assets/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+  </head>
+  <body>
+    <div class="container">
+      <div class="controls">
+        <button id="add-note" type="button" class="no-select" name="add-note">add</button>
+        <button id="save-notes" type="button" class="no-select" name="save-notes">save</button>
+      </div>
+      <ul id="notes-list">
+
+      </ul>
+    </div>
+    <script type="text/javascript">
+      var data = <%- JSON.stringify(data[0])%>;
+    </script>
+    <script src="/assets/libs/hammer.min.js" charset="utf-8"></script>
+    <script src="/assets/notes.js" charset="utf-8"></script>
+  </body>
+</html>

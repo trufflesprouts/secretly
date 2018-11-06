@@ -1,0 +1,405 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:300");
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 18px;
+  font-weight: 300;
+  font-family: "Roboto Mono", "Source Code Pro", monospace;
+  word-wrap: break-word;
+  word-break: break-all;
+  -webkit-animation: fade 0.6s ease-in-out both;
+          animation: fade 0.6s ease-in-out both;
+}
+
+.error-message {
+  position: absolute;
+  z-index: 4;
+  width: 100vw;
+  color: white;
+  text-align: center;
+  background-color: red;
+}
+
+.auth-btn {
+  display: block;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: white;
+  font-family: 'Press Start 2P', "Roboto Mono", "Source Code Pro", monospace;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: black;
+  border: 0;
+  outline: 0;
+  padding: 25px 0;
+  transition: 0.1s linear;
+}
+
+#take-photo {
+  display: block;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  bottom: 5vh;
+  left: 10vw;
+  width: 80vw;
+}
+
+#take-photo.hidden {
+  display: none;
+}
+
+#take-photo.visible {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#take-photo.supervisible {
+  visibility: visible;
+  opacity: 1;
+}
+
+#start-camera{
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.7s ease-in-out;
+}
+
+#start-camera.hidden {
+  display: none;
+}
+
+#start-camera.visible{
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+#file-upload {
+  display: none;
+}
+
+#file-upload.visible {
+  display: block;
+}
+
+.auth-btn img {
+  width: 15px;
+}
+
+.auth-btn:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.auth-btn:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+.auth-btn.blink {
+  -webkit-animation: blink 2s ease-in-out infinite;
+          animation: blink 2s ease-in-out infinite;
+}
+
+@media(min-width: 450px) {
+  .auth-btn {
+    font-size: 20px;
+  }
+  .auth-btn img {
+    width: 25px;
+  }
+}
+
+.controls-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 3;
+  min-height: 100vh;
+  max-height: 90vh;
+  overflow: hidden;
+  width: 100vw;
+  font-size: 16px;
+  padding: 30px;
+  transition: background-color 0.7s ease-in-out;
+}
+
+.controls-container.visible {
+  background-color: white;
+}
+
+.controls-container .info {
+  visibility: hidden;
+  opacity: 0;
+  height: 70vh;
+  transition: all 0.7s ease-in-out;
+}
+
+.controls-container.visible .info {
+  visibility: visible;
+  opacity: 1;
+  height: 100%;
+}
+
+.controls-container .controls {
+  max-width: 450px;
+}
+
+.camera-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+.camera-container video#camera-stream {
+  display: none;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.camera-container img#snap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 2;
+  display: none;
+}
+
+.camera-container canvas {
+  display: none;
+}
+
+.camera-container video#camera-stream.visible, .camera-container img#snap.visible {
+  display: block;
+}
+
+
+@media(min-width: 1230px) {
+  #take-photo.visible {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+  }
+
+  #start-camera.visible {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+  }
+
+  .controls-container {
+    position: relative;
+    width: 40vw;
+    height: 100vh;
+    float: left;
+  }
+
+  .controls-container .controls {
+    position: absolute;
+    bottom: 5vw;
+    left: 5vw;
+    width: 30vw;
+  }
+
+  .controls-container.full-width {
+    position: absolute;
+    width: 100vw;
+  }
+  .controls-container.full-width .controls {
+    position: relative;
+    bottom: 0;
+    left: 0;
+  }
+
+  .camera-container {
+    width: 60vw;
+    height: 100vh;
+  }
+}
+
+@media(min-width: 1900px) {
+  .controls-container {
+    width: 30vw;
+  }
+
+  .controls-container .controls {
+    bottom: 5vw;
+    left: 5vw;
+    width: 20vw;
+  }
+
+  .controls .info {
+    margin-bottom: 2.5vw;
+  }
+
+  .camera-container {
+    width: 70vw;
+  }
+}
+
+
+@-webkit-keyframes blink {
+  0% {
+    color: rgb(255, 217, 56);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+  16% {
+    color: rgb(89, 255, 126);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+  32% {
+    color: rgb(255, 107, 107);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+  48% {
+    color: rgb(0, 255, 232);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+  64% {
+    color: rgb(255, 107, 107);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+  80% {
+    color: rgb(112, 200, 255);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    color: rgb(255, 107, 107);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+
+@keyframes blink {
+  0% {
+    color: rgb(255, 217, 56);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+  16% {
+    color: rgb(89, 255, 126);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+  32% {
+    color: rgb(255, 107, 107);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+  48% {
+    color: rgb(0, 255, 232);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+  64% {
+    color: rgb(255, 107, 107);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+  80% {
+    color: rgb(112, 200, 255);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    color: rgb(255, 107, 107);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.no-select::selection {
+  background-color: transparent;
+}
+
+.no-select::-moz-selection {
+  background-color: transparent;
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  /*IE10*/
+  -ms-user-select: none;
+  user-select: none;
+  /*You just need this if you are only concerned with android and not desktop browsers.*/
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:300");
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: "Roboto Mono", "Source Code Pro", monospace;
+  -webkit-animation: fade 0.6s ease-in-out both;
+          animation: fade 0.6s ease-in-out both;
+}
+
+button {
+  font-family: 'Press Start 2P', "Roboto Mono", "Source Code Pro", monospace;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 50%;
+  font-size: 15px;
+  float: left;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  transition: 0.1s linear;
+}
+
+button:active {
+  background-color: rgb(233, 233, 233);
+  color: #ffa800;
+  -webkit-transform: scale(0.85);
+          transform: scale(0.85);
+}
+
+.container {
+  padding: 50px 30px;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+@media(min-width: 500px) {
+  .container {
+    padding: 100px 30px;
+  }
+}
+
+.controls {
+  margin-bottom: 30px;
+}
+
+.controls::after {
+  content:"";
+  display:block;
+  clear:both;
+}
+
+.media {
+  display: block;
+  background-color: #FFE600;
+  overflow-y: auto;
+  opacity: 1;
+  padding: 20px;
+  max-height: 500px;
+  margin-bottom: 30px;
+  transition-property: opacity, box-shadow, padding, max-height, margin;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in-out;
+}
+
+.media.hidden {
+  opacity: 0;
+  padding: 0px 20px;
+  max-height: 0px;
+  margin-bottom: 0px;
+}
+
+.media:focus, .media:hover, .media:active {
+  outline: 0;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.media.delete-stage-1 {
+  opacity: 0;
+}
+
+.media.is-animating {
+  transition-property: transform, box-shadow, padding, max-height, margin;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.no-select::selection {
+  background-color: transparent;
+}
+
+.no-select::-moz-selection {
+  background-color: transparent;
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  /*IE10*/
+  -ms-user-select: none;
+  user-select: none;
+  /*You just need this if you are only concerned with android and not desktop browsers.*/
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

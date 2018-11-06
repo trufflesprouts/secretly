@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secretly</title>
+  <link rel="stylesheet" href="/assets/login.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/assets/manifest.json">
+  <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#000000">
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico">
+  <meta name="apple-mobile-web-app-title" content="Secretly">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="application-name" content="Secretly">
+  <meta name="msapplication-config" content="/assets/browserconfig.xml">
+  <meta name="theme-color" content="#000000">
+</head>
+
+<body>
+  <div class="error-message">
+    <%= log %>
+  </div>
+  <div id="controls-container" class="controls-container visible">
+    <div class="controls">
+      <div class="info">
+        <p>Safely secure your secrets, no one will be able to read them, unless they look exceptionally like you.
+        </p>
+        <br>
+        <p>Once you click AUTHENTICATE you will be able to write anything you want, if you close the app you won’t be able to see your secrets untill you authenticate again.</p>
+      </div>
+      <button id="start-camera" type="button" name="take-photo" class="auth-btn visible no-select"><img src="/assets/camera.svg"> start cam <img src="/assets/camera.svg"></button>
+      <button id="take-photo" type="button" name="take-photo" class="auth-btn visible no-select"><img src="/assets/fire.svg"> authenticate <img src="/assets/fire.svg"></button>
+      <form id="file-upload" method="post" enctype="multipart/form-data" action="/auth">
+        <label for="files" class="auth-btn btn no-select"><img src="/assets/fire.svg"> authenticate <img src="/assets/fire.svg"></label>
+        <input id="files" type="file" style="display:none;" name="file" onchange="startLoader.call(this);">
+        <!-- <input id="submit-upload" type="submit" style="display:none;" value="Submit"> -->
+      </form>
+    </div>
+  </div>
+  <div class="camera-container">
+    <video id="camera-stream"></video>
+    <img id="snap">
+    <canvas></canvas>
+  </div>
+
+  <script src="/assets/login.js" charset="utf-8"></script>
+</body>
+
+</html>
